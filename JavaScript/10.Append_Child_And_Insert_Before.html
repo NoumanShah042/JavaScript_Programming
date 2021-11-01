@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Append Child | Insert Before</title>
+  </head>
+  <body id="body">
+    <h2>Emran</h2>
+    <h2>Emran Hasan</h2>
+    <script type="text/javascript">
+      // appendChild
+      var createElement = document.createElement('p')
+      var createTextNode = document.createTextNode('This is just text')
+      var createComment = document.createComment('This is just comment')
+      createElement.appendChild(createTextNode)
+      document.getElementById('body').appendChild(createElement)
+      document.getElementById('body').appendChild(createComment)
+      console.log(createElement)
+      console.log(createTextNode)
+      console.log(createComment)
+
+      //insertBefore
+      var target = document.getElementById('body');
+      target.insertBefore(createElement, target.childNodes[2])
+      // var tar = target.childNodes
+      // console.log(tar)
+
+    </script>
+
+  </body>
+</html>

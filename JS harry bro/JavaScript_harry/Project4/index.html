@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="bootstrap.css">
+
+    <title> Welcome to Dragon travels</title>
+</head>
+
+<body>
+    <!-- alert will only show if it has "show" class , which we add dynamically -->
+    <div id="success"></div>    
+    <div id="failure"></div>
+
+    
+    <div class="container">
+        <h1>Dragon Travel desk</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your username">
+                <!-- small tag will only work, if input element has is-invalid class,
+                      which we will add dynamically   -->
+                <small id="namevalid" class="form-text  text-muted invalid-feedback">
+                    <div class="text-danger">
+                        Your username must be 3-10 characters long and should not start with a number
+                    </div>
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                <small id="emailvalid" class="form-text text-muted invalid-feedback">
+                    Your email must be a valid email
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="car">Select your car</label>
+                <select class="form-control" id="car">
+                    <option>Omni</option>
+                    <option>Maruti 800</option>
+                    <option>Ford Titanium</option>
+                    <option>Audi A4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Enter your address</label>
+                <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="address">Enter your phone number</label>
+                <input class="form-control" name="phone" id="phone" rows="3">
+                <small id="emailvalid" class="form-text text-muted invalid-feedback">
+                    Your phone number must be 10 digit long
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Any other message...</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button id="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+    <script src="index.js"></script> 
+
+    <!-- <script src="bootstrap.js"></script> --> 
+</body>
+
+</html>

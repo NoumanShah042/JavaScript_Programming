@@ -1,0 +1,8 @@
+https://developer.mozilla.org/en-US/         MDN web docs
+
+https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=23bbe0a14a804131896e3c0bb7874061                    json
+
+https://jsonlint.com/            check json syntax
+
+
+https://rapidapi.com/collection/google-api       List of Google APIs

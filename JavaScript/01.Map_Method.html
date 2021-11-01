@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Map | Method</title>
+
+
+</head>
+<body>
+  <h2>Map | Method</h2>
+
+  <script type="text/javascript">
+    var ary = [5, 8, 4, 7]
+    var b = ary.map(test)
+
+    document.write(b)
+
+
+    function test(x) {
+      return x * 10
+    }
+
+    // <!-- 2nd map -->
+
+    var emran = [
+      { fname: 'Emran', lname: 'Hasan' },
+      { fname: 'Freelancer', lname: 'Emran' },
+      { fname: 'Coder', lname: 'Emran' }
+    ]
+
+    var eshan = emran.map(name)
+
+    document.write(eshan)
+
+    function name(ehav) {
+      return ' ' + ehav.fname + ' ' + ehav.lname
+    }
+  </script>
+</body>
+
+</html>

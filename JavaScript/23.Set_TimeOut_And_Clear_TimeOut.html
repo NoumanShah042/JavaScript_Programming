@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Set And Clear TimeOut</title>
+    <style media="screen">
+      #test{
+        height: 100px;
+        width: 100px;
+        background: blue;
+      }
+      .yellow{
+        background:yellow !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="test" class=""></div><br>
+    <button onclick="stopTimeOut()" type="button" name="button">Click Me!</button>
+
+    <script type="text/javascript">
+
+      var id = setTimeout(anim, 3000)
+      function anim() {
+        // var target = document.getElementById('test')
+        // target.style.background = 'magenta'
+      }
+
+      function stopTimeOut() {
+        // var target = document.getElementById('test')
+        // target.style.background = 'magenta'
+        // // target.style.marginLeft = '100px'
+        // clearTimeout(id)
+      var tar = document.getElementById('test')
+      tar.classList.toggle('yellow')
+      console.log(tar)
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

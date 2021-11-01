@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Set Interval</title>
+    <style media="screen">
+      #test{
+        background: blue;
+        width: 30px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="test"></div>
+
+    <script type="text/javascript">
+
+      var a = 0
+      setInterval(anim, 200)
+
+      function anim() {
+        a = a + 10
+        var target = document.getElementById('test')
+        target.style.marginLeft = a + 'px';
+        // console.log(a)
+        // target.append(a)
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Clone Node</title>
+  </head>
+  <body>
+
+    <ul id="list">
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Mango</li>
+      <li>Banana</li>
+    </ul>
+
+    <script type="text/javascript">
+
+      var list = document.getElementById('list')
+      var clone = list.children[2].cloneNode(true)
+      list.appendChild(clone)
+      console.log(clone)
+
+
+      // 2nd step
+      var Target = document.getElementById('list')
+      var cloneNode = list.lastChild.cloneNode()
+      cloneNode.innerHTML = 'Clone value-2'
+      Target.appendChild(cloneNode)
+      console.log(cloneNode)
+
+    </script>
+
+  </body>
+</html>

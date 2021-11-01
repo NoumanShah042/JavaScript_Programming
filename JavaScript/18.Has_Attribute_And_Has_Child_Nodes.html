@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Has Attribute | Has Child Node</title>
+    <style media="screen">
+
+    .test1{
+      width: 500px;
+      padding: 15px;
+      background: cyan;
+      margin: 0 auto;
+    }
+
+    .test2{
+      width: 500px;
+      padding: 15px;
+      background: magenta;
+      margin: 20px auto;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="test1" id="test1">
+      <h1>Lorem ipsum dolor sit amet</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <div class="test2" id="test2">
+      <h1>Lorem ipsum dolor sit amet</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <script type="text/javascript">
+
+      //hasAttribute
+      var target = document.getElementById('test1')
+      var find = target.hasAttribute("title")
+      console.log(find)
+
+      //hasChildNodes
+      var target2 = document.getElementById('test2')
+      var find2 = target2.hasChildNodes()
+      console.log(find2)
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Form Event</title>
+  </head>
+  <body>
+
+    <form id="" class="" action="index.html" method="post">
+
+    <label for="">First Name</label>
+    <input id="fname" onfocus="focusFunction(this)" onblur="blurFunction(this)" onchange="changeFunction(this)" oninvalid="alert('Please enter your fname name')" required type="text" name="" value=""><br><br>
+
+    <label for="">Last Name</label>
+    <input id="lname" onfocus="focusFunction(this)" onblur="blurFunction(this)" onchange="changeFunction(this)" oninvalid="alert('Please enter your lname name')" type="text" name="" value="" required><br><br>
+
+    <label for="">Choose Your Country:</label>
+    <select id="" onfocus="focusFunction(this)" onblur="blurFunction(this)" onchange="changeFunction(this)" class="" name="">
+      <option value="Bangladesh">Bangladesh</option>
+      <option value="Pakistan">Pakistan</option>
+      <option value="India">India</option>
+      <option value="Srilanka">Srilanka</option>
+      <option value="Nepal">Nepal</option>
+      <option value="Vutan">Vutan</option>
+    </select>
+    <input type="submit" name="" value="Submit">
+
+  </form> <br>
+
+    <div id="test" style="border: 1px solid blue"></div>
+
+    <script type="text/javascript">
+      function focusFunction(element){
+        element.style.background = 'lime'
+      }
+
+      function blurFunction(element){
+        element.style.background = ""
+      }
+
+      function changeFunction(element){
+        var x = element.value
+        document.getElementById('test').innerHTML = x
+      }
+
+    </script>
+
+  </body>
+</html>

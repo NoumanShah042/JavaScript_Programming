@@ -1,0 +1,97 @@
+alt + arrow   ->   move line up and down
+ctrl+d        ->  duplicate
+Ctrl with =   ->  zoom in    (full  app)
+ctrl with -  ->   zoom out
+
+ctrl+b        ->  Explorer pane open/close
+
+*************************************
+
+multiple cursors  ->  hold alt and click where you want another cursor
+                  -> click elsewhere to clear all cursors
+*************************************
+
+user setting -> apply for all 
+workspace setting -> apply only for that folder
+
+*************************************
+
+set indentation 
+
+
+in the bootom pane click spaces
+
+and sleect one out of (indent using spaces or indent using tabs )
+if you select spaces you can set indent to specific 1 2 3 4 spaces
+ 
+
+*************************************
+
+Theme
+
+dark + (default dark)
+
+*************************************
+
+Extensions :
+
+https://www.youtube.com/watch?v=fUAtoZQcwng
+https://marketplace.visualstudio.com/
+
+
+Jinja2 Snippet Kit
+
+Live share   (  best)
+
+live share
+
+Prettier( for formatting )
+(just save file or press ctrl+s to foramt any file)
+(just type formatter in setting and make it default)
+(just type prettier setting for setting and we can set indentation also )
+
+
+
+Bracket Pair Colorizer
+
+Live server
+
+Debugger for Chrome
+
+
+JavaScript (ES6) code snippets
+( Code snippets for JavaScript in ES6 syntax )
+
+ES6 react/redux/graphQL/react-native snippets
+
+
+***************************************************
+
+Browser Settings
+
+********
+
+Ctrl + Shift + K   open console in browser
+
+********
+inspect -> gear -> check preserve lock
+
+if page reload it will show previous log
+
+********
+
+***************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+

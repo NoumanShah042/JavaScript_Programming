@@ -1,0 +1,185 @@
+
+// In HTML:
+// <element onclick="myScript">
+
+// In JavaScript:
+// object.onclick = function(){myScript};
+
+// In JavaScript, using the addEventListener() method:
+// object.addEventListener("click", myScript);
+
+
+**********************************************
+
+// In HTML:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example demonstrates how to assign an "onclick" event to a p element.</p>
+
+<p id="demo" onclick="myFunction()">Click me.</p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+</script>
+
+</body>
+</html>
+
+
+--------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example demonstrates how to assign an "onclick" event to a p element.</p>
+
+<p id="demo" onclick="myFunction(event)">Click me.</p>
+
+<script>
+function myFunction(event) {        //  write full spelling here
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  console.log(event.target)
+}
+</script>
+
+</body>
+</html>
+
+------------------------------
+<!DOCTYPE html>
+<html>
+<body>
+
+<p onmousedown="myFunction(this,'red')" onmouseup="myFunction(this,'green')">
+Click the text to change the color. A function, with parameters, is triggered when the mouse button is pressed down, and again, with other parameters, when the mouse button is released.
+</p>
+
+<script>
+function myFunction(elmnt,clr) {
+  elmnt.style.color = clr;
+  
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+**********************************************
+// In JavaScript:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the HTML DOM to assign an "onclick" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+<script>
+document.getElementById("demo").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+</script>
+
+</body>
+</html>
+
+
+-----------------------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the HTML DOM to assign an "onclick" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+<script>
+document.getElementById("demo").onclick = function(e) {myFunction(e)};
+
+function myFunction(e) {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  console.log(e.target)
+}
+</script>
+
+</body>
+</html>
+
+
+---------------------
+
+
+x.addEventListener("click", function(e){myfunction(e, param1, param2)});
+
+... 
+
+function myfunction(e, param1, param1) {
+    ... 
+} 
+
+
+**********************************************
+
+
+// In JavaScript, using the addEventListener() method:
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the addEventListener() method to attach a "click" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+<script>
+document.getElementById("demo").addEventListener("click", myFunction);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+</script>
+
+</body>
+</html>
+
+--------------------------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the addEventListener() method to attach a "click" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+<script>
+document.getElementById("demo").addEventListener("click", myFunction);
+
+function myFunction(e) {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  console.log(e.target);
+}
+</script>
+
+</body>
+</html>
+
+ 
+
+***************************************************
+
+

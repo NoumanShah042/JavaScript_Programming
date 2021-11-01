@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Form Event</title>
+  </head>
+  <body>
+
+    <form id="" class="" action="index.html" method="post">
+
+    <label for="">First Name</label>
+    <input id="fname" onfocus="focusFunction(this)" onblur="blurFunction(this)" oninput="inputFunction(this)" type="text" name="" value=""><br><br>
+
+    <label for="">Last Name</label>
+    <input id="lname" onfocus="focusFunction(this)" onblur="blurFunction(this)" oninput="inputFunction(this)" type="text" name="" value=""><br><br>
+
+    <label for="">Choose Your Country:</label>
+    <select id="" onfocus="focusFunction(this)" onblur="blurFunction(this)" class="" name="">
+      <option value="">Bangladesh</option>
+      <option value="">Pakistan</option>
+      <option value="">India</option>
+      <option value="">Srilanka</option>
+      <option value="">Nepal</option>
+      <option value="">Vutan</option>
+    </select>
+
+  </form> <br>
+
+    <div id="test" style="border: 1px solid blue"></div>
+
+    <script type="text/javascript">
+      function focusFunction(element){
+        element.style.background = 'lime'
+      }
+
+      function blurFunction(element){
+        element.style.background = ""
+      }
+
+      function inputFunction(element){
+        var x = element.value
+        document.getElementById('test').innerHTML = x
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,9 @@
+Learn JavaScript: Full-Stack from Scratch
+Understand the JavaScript language itself, Node.js, MongoDB, The Web Browser and More To Create Meaningful Applications
+
+
+The JavaScript language itself
+How to control a database (MongoDB) with JavaScript
+How to control the Web Browser with JavaScript
+How to implement user registration, log-in, log-out & user generated content
+How to setup a server by using Node JS and Express

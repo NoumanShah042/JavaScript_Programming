@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Add Event Listener</title>
+</head>
+
+<body>
+  <nav>
+    <div class="wrapper" id="wrap">
+      <div class="">
+        <h2 style="border:2px solid red; cursor: alias" id="heading" class="headd">EmranBD</h2>
+      </div>
+      <div class="">
+        <p class="lead" id="dd">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+          officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="">
+        <input type="text" name="" value="">
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div id="outer" style="height : 200px ; width: 200px; background-color: red">
+      <h3>Outer</h3>
+      <div id="inner" style="margin: 0 auto; height : 120px ; width: 150px; background-color: tan">
+        <h3>Inner</h3>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    var a = document.getElementById('heading').innerHTML = 'EmranBD'
+
+    document.querySelector('#heading').style.color = '#fff',
+      document.querySelector('#heading').style.backgroundColor = 'blue';
+
+    // document.querySelector('.headd').onclick = abc;
+    // document.querySelector('.headd').onmouseenter = abc;
+    document.querySelector('.headd').addEventListener('dblclick', abc)
+
+    function abc() {
+      document.querySelector('#heading').style.backgroundColor = 'green';
+    };
+
+    document.getElementById('heading').addEventListener('click', function () {
+      document.getElementById('heading').style.border = '2px solid tan'
+    })
+
+
+
+    document.querySelector('#heading').style.padding = '5px'
+
+    // document.querySelector('#heading').className = 'head'
+
+    document.querySelector('.lead').style.color = 'tan'
+
+    // console.log(a)
+    // console.log(b)
+
+    document.querySelector('#outer').addEventListener('click', function () {
+      alert('outer div')
+    });
+
+    document.querySelector('#inner').addEventListener('click', xyz)
+
+    function xyz() {
+      document.querySelector('#inner').style.color = 'yellow'
+      alert('inner div');
+
+    }
+
+    // paragraph <section>
+
+    // var v = document.querySelector('#dd')
+    // var v = document.querySelector('.lead')
+    // var v = document.getElementById('dd')
+    // var v = document.getElementsByClassName('lead')
+    // var v = document.getElementsByTagName('p')
+
+
+    var v = document.getElementById('dd').addEventListener('mouseenter', vmd)
+
+    function vmd() {
+      document.getElementById('dd').style.color = 'green';
+    }
+
+    var v = document.getElementById('dd').addEventListener('mouseleave', wsd)
+
+    function wsd() {
+      document.getElementById('dd').style.color = 'red';
+    }
+
+  </script>
+
+</body>
+
+</html>

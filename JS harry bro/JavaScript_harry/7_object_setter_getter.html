@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Creating a JavaScript Object.</p>
+<p id="demo"></p>
+<script>
+
+/*
+var person = {
+firstName : "John",
+lastName : "Doe",
+age : 50,
+eyeColor : "blue"
+};
+document.getElementById("demo").innerHTML = person.firstName + " " + person.lastName;*/
+
+
+//  Getter and setter method
+
+    var person = {
+        firstName: "John",
+        lastName: "Doe",
+        language: "English",
+        get lang() {
+            return this.language;
+        },
+        set lang(lang) {
+            this.language = lang;
+        }
+    };
+    // Display data from the object using a getter:
+    console.log(person.lang)
+    person.lang = "en";
+    console.log(person.lang)
+    document.getElementById("demo").innerHTML = person.lang;
+
+
+</script>
+</body>
+</html>

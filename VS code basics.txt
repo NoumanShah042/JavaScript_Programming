@@ -1,0 +1,12 @@
+
+
+file > preferences > settings > font , size , family
+
+file > preferences >  keyboard shortcuts or (  ctrl+k and then ctrl+s  )
+
+
+right click browser > console > show console output
+
+
+naming convensions
+http://www.j-io.org/Javascript-Naming_Conventions

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Get | Set</title>
+    <style media="screen">
+      .emran {
+        background: yellow;
+      }
+      .ehav{
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="wrapper" id="wrap">
+        <div class="">
+          <h2 id="heading" class="emran">EmranBD</h2>
+        </div>
+        <div class="">
+          <p title="dd">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="">
+          <input type="text" name="" value="">
+        </div>
+      </div>
+    </nav>
+
+    <script type="text/javascript">
+    // var a =  document.getElementById('heading').innerHTML = 'EmranBD'
+    //
+    // var b =  document.getElementById('heading').setAttribute('style', 'color : red ; background-color: black')
+      // console.log(a)
+      // console.log(b)
+
+      document.getElementById('heading').addEventListener('click', abc)
+
+      function abc() {
+
+        document.getElementById('heading').classList.toggle('ehav')
+        var h = document.getElementById('heading').classList;
+        console.log(h)
+      }
+
+    </script>
+
+  </body>
+</html>

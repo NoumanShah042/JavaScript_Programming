@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Window Open & Close Method</title>
+  </head>
+  <body>
+
+    <button onclick="openWindow()" type="button" name="button">Window Open</button><br><br>
+
+    <button onclick="closeWindow()" type="button" name="button">Window Close</button>
+
+    <script type="text/javascript">
+
+      var myWindow
+
+      function openWindow() {
+        myWindow = window.open("http://www.facebook.com", "", "width=500px, height= 300px, top= 100px, left= 100px")
+
+      }
+
+      function closeWindow() {
+        myWindow.close()
+      }
+
+    </script>
+
+  </body>
+</html>
+<!-- window.open("URL", "_blank, _parent, _self, _Top", "Width") -->

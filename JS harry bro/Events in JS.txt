@@ -1,0 +1,641 @@
+********************************************************
+Add an Event Handler to the window Object
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript addEventListener()</h2>
+
+<p>This example uses the addEventListener() method on the window object.</p>
+
+<p>Try resizing this browser window to trigger the "resize" event handler.</p>
+
+<p id="demo"></p>
+
+<script>
+window.addEventListener("resize", function(){
+  document.getElementById("demo").innerHTML = Math.random();
+});
+</script>
+
+</body>
+</html>
+
+
+
+********************************************************
+The FocusEvent Object
+Events that occur when elements gets or loses focus, belongs to the FocusEvent Object.
+
+
+onblur		The event occurs when an element loses focus
+onfocus		The event occurs when an element gets focus
+onfocusin	The event occurs when an element is about to get focus
+onfocusout	The event occurs when an element is about to lose focus
+
+
+The onfocusin event is similar to the onfocus event. The main difference is that the onfocus event does not bubble. 
+
+-----------------------
+onblur	:
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+Enter your name: <input type="text" id="fname" onblur="myFunction()">
+
+<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("fname");
+  x.value = x.value.toUpperCase();
+}
+</script>
+
+</body>
+</html>
+-----------------------
+
+onfocus:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+Enter your name: <input type="text" onfocus="myFunction(this)">
+
+<p>When the input field gets focus, a function is triggered which changes the background-color.</p>
+
+<script>
+function myFunction(x) {
+  x.style.background = "yellow";
+}
+</script>
+
+</body>
+</html>
+
+-----------------------
+
+onfocusin:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+Enter your name: <input type="text" onfocusin="myFunction(this)">
+
+<p>When the input field gets focus, a function is triggered which changes the background-color.</p>
+
+<script>
+function myFunction(x) {
+  x.style.background = "yellow";
+}
+</script>
+
+</body>
+</html>
+
+
+-----------------------
+
+onfocusout
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+Enter your name: <input type="text" id="fname" onfocusout="myFunction()">
+
+<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("fname");
+  x.value = x.value.toUpperCase();
+}
+</script>
+
+</body>
+</html>
+
+
+********************************************************
+https://www.w3schools.com/jsref/obj_inputevent.asp
+
+inputevent: input event:
+
+oninput	The event occurs when an element gets user input
+ 
+
+//Execute a JavaScript when a user writes something in an <input> field:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Write something in the text field to trigger a function.</p>
+
+<input type="text" id="myInput" oninput="myFunction()">
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput").value;
+  document.getElementById("demo").innerHTML = "You wrote: " + x;
+}
+</script>
+
+</body>
+</html>
+
+********************************************************
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The onclick Event</h1>
+
+<p>The onclick event is used to trigger a function when an element is clicked on.</p>
+
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+</body>
+</html>
+
+********************************************************
+
+key events
+
+
+onkeydown	The event occurs when the user is pressing a key
+onkeypress	The event occurs when the user presses a key
+onkeyup		The event occurs when the user releases a key
+-------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>A function is triggered when the user is pressing a key in the input field.</p>
+
+<input type="text" onkeydown="myFunction()">
+
+<script>
+function myFunction() {
+  alert("You pressed a key inside the input field");
+}
+</script>
+
+</body>
+</html>
+
+-------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>A function is triggered when the user is pressing a key in the input field.</p>
+
+<input type="text" onkeypress="myFunction()">
+
+<script>
+function myFunction() {
+  alert("You pressed a key inside the input field");
+}
+</script>
+
+</body>
+</html>
+
+-------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>A function is triggered when the user releases a key in the input field. The function transforms the character to upper case.</p>
+Enter your name: <input type="text" id="fname" onkeyup="myFunction()">
+
+<script>
+function myFunction() {
+  var x = document.getElementById("fname");
+  x.value = x.value.toUpperCase();
+}
+</script>
+
+</body>
+</html>
+
+
+********************************************************
+onload 
+
+
+Definition and Usage
+The onload event occurs when an object has been loaded.
+
+onload is most often used within the <body> element to execute a script once a web page has completely loaded all content (including images, script files, CSS files, etc.).
+
+The onload event can be used to check the visitor's browser type and browser version, and load the proper version of the web page based on the information.
+
+The onload event can also be used to deal with cookies (see "More Examples" below).
+-------------
+<!DOCTYPE html>
+<html>
+<body onload="myFunction()">
+
+<h1>Hello World!</h1>
+
+<script>
+function myFunction() {
+  alert("Page is loaded");
+}
+</script>
+
+</body>
+</html>
+-------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<img src="w3javascript.gif" onload="loadImage()" width="100" height="132">
+
+<script>
+function loadImage() {
+  alert("Image is loaded");
+}
+</script>
+
+</body>
+</html>
+
+-------------
+
+********************************************************
+
+The MouseEvent Object
+
+Events that occur when the mouse interacts with the HTML document belongs to the MouseEvent Object.
+Event Types
+These event types belongs to the MouseEvent Object:
+
+Event		Description
+onclick		The event occurs when the user clicks on an element
+oncontextmenu	The event occurs when the user right-clicks on an element to open a context menu
+ondblclick	The event occurs when the user double-clicks on an element
+onmousedown	The event occurs when the user presses a mouse button over an element
+onmouseenter	The event occurs when the pointer is moved onto an element
+onmouseleave	The event occurs when the pointer is moved out of an element
+onmousemove	The event occurs when the pointer is moving while it is over an element
+onmouseout	The event occurs when a user moves the mouse pointer out of an element, or out of one of its children
+onmouseover	The event occurs when the pointer is moved onto an element, or onto one of its children
+onmouseup	The event occurs when a user releases a mouse button over an element
+
+
+------------------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the addEventListener() method to attach a "click" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+<script>
+document.getElementById("demo").addEventListener("click", myFunction);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+</script>
+
+</body>
+</html>
+------------------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p ondblclick="myFunction()">Double-click this paragraph to trigger a function.</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+</body>
+</html>
+
+------------------------
+mouseDown   mouseUp
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="myP" onmousedown="mouseDown()" onmouseup="mouseUp()">
+Click the text! The mouseDown() function is triggered when the mouse button is pressed down over this paragraph, and sets the color of the text to red. The mouseUp() function is triggered when the mouse button is released, and sets the color of the text to green.
+</p>
+
+<script>
+function mouseDown() {
+  document.getElementById("myP").style.color = "red";
+}
+
+function mouseUp() {
+  document.getElementById("myP").style.color = "green";
+}
+</script>
+
+</body>
+</html>
+
+ ---------------------
+
+onmousedown  onmouseup
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p onmousedown="myFunction(this,'red')" onmouseup="myFunction(this,'green')">
+Click the text to change the color. A function, with parameters, is triggered when the mouse button is pressed down, and again, with other parameters, when the mouse button is released.
+</p>
+
+<script>
+function myFunction(elmnt,clr) {
+  elmnt.style.color = clr;
+}
+</script>
+
+</body>
+</html>
+
+---------------------
+
+ondblclick
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p ondblclick="myFunction()">Double-click this paragraph to trigger a function.</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+</body>
+</html>
+
+
+------------------------
+onmousemove   +  onmouseenter +   onmouseover
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 10px;
+  float: left;
+  padding: 30px;
+  text-align: center;
+  background-color: lightgray;
+}
+
+p {
+  background-color: white;
+}
+</style>
+</head>
+<body>
+
+<h3>This example demonstrates the difference between onmousemove, onmouseenter and onmouseover.</h3>
+
+<p>The onmousemove event occurs every time the mouse pointer is moved over the div element.</p>
+<p>The mouseenter event only occurs when the mouse pointer enters the div element. </p>
+<p>The onmouseover event occurs when the mouse pointer enters the div element, and its child elements (p and span).</p>
+
+<div onmousemove="myMoveFunction()">
+  <p>onmousemove: <br> <span id="demo">Mouse over me!</span></p>
+</div>
+
+<div onmouseenter="myEnterFunction()">
+  <p>onmouseenter: <br> <span id="demo2">Mouse over me!</span></p>
+</div>
+
+<div onmouseover="myOverFunction()">
+  <p>onmouseover: <br> <span id="demo3">Mouse over me!</span></p>
+</div>
+
+<script>
+var x = 0;
+var y = 0;
+var z = 0;
+
+function myMoveFunction() {
+  document.getElementById("demo").innerHTML = z+=1;
+}
+
+function myEnterFunction() {
+  document.getElementById("demo2").innerHTML = x+=1;
+}
+
+function myOverFunction() {
+  document.getElementById("demo3").innerHTML = y+=1;
+}
+</script>
+
+</body>
+</html>
+
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
+
+
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+
+********************************************************
+

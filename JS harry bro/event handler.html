@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container my-3">
+        <h1>Event Handling</h1>
+        <!-- <button onclick="displayDate()">The time is?</button> -->
+        <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+        <button onclick="this.innerHTML = Date()">The time is?</button>
+        <button onclick="displayDate()">Get Time</button>
+        <p id="demo">Display time Here</p>
+        <br><br><br>
+        <button id="btn" onmouseover="changeColor(event)"> on mouse over </button>
+
+        <!-- passing arguments to function -->
+        <p onclick="myFunction(this, 'red', 'Nouman')">Click me to change my text color.</p>
+
+    </div>
+
+
+
+</body>
+
+<script>
+    function displayDate() {
+        document.getElementById("demo").innerHTML = Date();
+    }
+
+    function changeColor(e) {
+        console.log(e.target)
+        document.getElementById("btn").style.background = "red"
+    }
+
+
+    function myFunction(elmnt, clr, name) {
+        console.log(name)
+        elmnt.style.color = clr;
+    }
+
+</script>
+
+
+</html>

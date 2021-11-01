@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Window MoveTo & MoveBy Method</title>
+  </head>
+  <body>
+
+    <button onclick="openWindow()" type="button" name="button">Window Open</button><br><br>
+
+    <button onclick="closeWindow()" type="button" name="button">Window Close</button><br><br>
+
+    <button onclick="moveWindow()" type="button" name="button">Window Move</button>
+
+    <script type="text/javascript">
+
+      var myWindow
+
+      function openWindow() {
+        myWindow = window.open("", "", "width=500px, height= 300px, top= 100px, left= 100px")
+        myWindow.document.write('<h2>Welcome</h2')
+
+      }
+
+      function closeWindow() {
+        myWindow.close()
+      }
+
+      function moveWindow() {
+        myWindow.moveTo(200, 200)
+        // myWindow.moveBy(100, 100)
+      }
+
+    </script>
+
+  </body>
+</html>
+<!-- window.open("URL", "_blank, _parent, _self, _Top", "Width") -->

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+
+<body>
+    <script>
+        //alert("Hello World")
+        var name = prompt("Enter you name")
+        console.log("name enter was:", name)
+        // Object literal Syntax
+        var person = { firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue", fullname: function () { return this.firstName + " " + this.lastName } };
+        console.log(person["firstName"])
+        console.log("Age", person.age)
+        console.log(person.fullname())
+        function testFunc() {
+            console.log("I am test function")
+        }
+        function testwitharguments(something) {
+            console.log(something)
+        }
+        testFunc();
+        testwitharguments(123456)
+        // Object
+        var car = new Object()
+        car.model = "honda civic"
+        car.year = 2019
+        car.color = "Black"
+        console.log(car.color)
+        var per_2 = person
+        per_2.age = 25
+        console.log("Age of Person", person.age)
+        console.log("Age of per_2", per_2.age)
+        x = "firstName"
+        console.log(person[x])
+        for (property in person) {
+            console.log(property)
+            console.log(person[property])
+        }
+
+
+    </script>
+    <H1>Welcome to First Web App</H1>
+    <h2 id="heading_1"></h2>
+    <h2 id="heading_2"></h2>
+    <script>
+        document.getElementById("heading_1").innerHTML = "Welcome " + name
+        document.getElementById("heading_2").innerHTML = Date().toLocaleString()
+        console.log(heading_1)
+        console.log(Date().toLocaleString())
+        //heading_1.innerHTML="Welcome "+name
+        //heading_2.innerHTML= Date().toLocaleString()
+        function getFormValues() {
+            nameTxtField = document.getElementsByName("n")
+            console.log("You entered name in form" + nameTxtField.value + "at time " + Date().toLocaleString())
+        }
+    </script>
+    <form action="/firstFormProcessor" method="POST">
+        <label>Name</label>
+        <input type="text" name="n" required />
+        <label>RollNo</label>
+        <input type="text" name="rn" required />
+        <label>Semmester</label>
+        <input type="number" name="sem" required />
+        <label>CGPA</label>
+        <input type="text" name="cgpa" required />
+
+        <input type="submit" name="submit" value="submit" onclick="getFormValues()">
+    </form>
+    {{ error }}
+
+</body>
+
+</html>

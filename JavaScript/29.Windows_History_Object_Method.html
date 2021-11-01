@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Window forward back go Method</title>
+  </head>
+  <body>
+
+    <button onclick="backFunction()" type="button" name="button">Back</button>
+
+    <button onclick="forwardFunction()" type="button" name="button">Forward</button>
+
+    <button onclick="goFunction()" type="button" name="button">Go</button>
+
+    <script type="text/javascript">
+
+      function backFunction() {
+        history.back()
+      }
+
+      function forwardFunction() {
+        history.forward()
+      }
+
+      function goFunction() {
+        history.go(1)
+      }
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Replace Child</title>
+  </head>
+  <body>
+    <ul id="list">
+
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Banana</li>
+      <li>Mango</li>
+
+    </ul>
+
+    <script type="text/javascript">
+
+      var target = document.getElementById('list')
+      var oldElement = target.children[2];
+      target.removeChild(oldElement)
+
+    </script>
+
+  </body>
+</html>
