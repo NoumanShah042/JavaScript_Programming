@@ -1,57 +1,61 @@
-//    run in dom.html file
-console.log('Welcome to tutorial 15');
+console.log("this is tut 16");
+//  run with dom.html
+// Creating, Removing & Replacing Elements
+// ********************************************************
 
-// HTML elements are also called nodes.
-// *******************************
+//  add or append child   (  IN this section we just add newly created li element to list(ul))
 
-// let cont = document.querySelector('.no');
-cont = document.querySelector('.container');   //  run directly on console of dom.html file for better understanding
+let element = document.createElement("li");                 //  it create <li></li>
+let text = document.createTextNode("I am a text node");    //    "I am a text node"
+element.appendChild(text);                                 //   now   element =   <li>I am a text node</li>
 
-//  see all properties at the end of this page
+// Add a class name to the li element
+element.className = "childul";
+element.id = "createdLi";
+element.setAttribute("title", "mytitle");       //   <li class="childul" id="createdLi" title="mytitle">I am a text node</li>
 
-console.log(cont.childNodes);    //  accept and show all nodes like newLine , comment and elements(tags)
-console.log(cont.children);    //  only accept  element(tags like div, li)
+// element.innerText = '<b>Hello this is created by harry</b>';
+// element.innerHTML = '<b>Hello this is created by harry</b>';
 
-let nodeName = cont.children[1].nodeName;     //  get chilren at index =  1 and show its Name ( tag name )
-let nodeType = cont.children[1].nodeType;
-
-// let nodeName = cont.childNodes[1].nodeName;    
-// let nodeType = cont.childNodes[1].nodeType;
-
-console.log(nodeName)     //  div  
-console.log(nodeType)   //   show the below listed int value for each nodetype
-
-// Node types
-// 1 -> Element               nodeType will give 1 for all element nodes
-// 2 -> Attribute
-// 3 -> Text Node
-// 8 -> Comment             nodeType will give 8 for all comments nodes
-// 9 -> document
-// 10 -> docType
+let ul = document.querySelector("ul.this");
+ul.appendChild(element);                          //  add   newly created li element to list(ul)
+// console.log(ul)
+// console.log(element)
 
 
- 
-// *******************************
+// ********************************************************
+// replace child      ()
 
-let container = document.querySelector('div.container');  // select div with container class
+let elem2 = document.createElement("h3");
+elem2.id = "elem2";
+elem2.className = "elem2Class";
+let tnode = document.createTextNode("This is a created node for elem2");
+elem2.appendChild(tnode);
 
-// console.log(container.children[1].children[0].children);
+element.replaceWith(elem2);      //  replace our element with elem2
 
-// console.log(container.firstChild);
-// console.log(container.firstElementChild);
+// ********************************************************
 
-// console.log(container.lastChild);
-// console.log(container.lastElementChild);
-// console.log(container.children);
-// console.log(container.childElementCount); // Count of child elements
+let myul = document.getElementById("myul"); //  here we get element to replace its child
 
-console.log(container.firstElementChild.parentNode);
-console.log(container.firstElementChild.nextSibling);
-console.log(container.firstElementChild.nextElementSibling);
-console.log(container.firstElementChild.nextElementSibling.nextElementSibling);
+// myul.replaceChild(element, document.getElementById("fui"));  //   ( replace With this new element     , replace this old element )
+// myul.removeChild(document.getElementById("lui"));
+
+// *********************
+
+let pr = elem2.getAttribute("id"); //  get id of elem2
+pr = elem2.getAttribute("class"); //  get class of elem2
+pr = elem2.hasAttribute("href"); //  is elem2 has href attribute
+elem2.removeAttribute("id");
+elem2.setAttribute("title", "myelem2title");
+
+console.log(elem2, pr);  //  <h3 class="elem2Class" title="myelem2title">This is a created node for elem2</h3>     false
+
+// *********************
 
 
-
+// quick quiz
+// create a heading element with text as "Go to CodeWithHarry" and create an a tag outside it with href = "https://www.codewithharry.com"
 
 
 /*
@@ -98,4 +102,3 @@ replaceChild() — Replaces a child node in an element
 
 
 */
-

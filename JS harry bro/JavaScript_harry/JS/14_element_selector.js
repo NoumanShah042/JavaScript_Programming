@@ -76,14 +76,16 @@ for (let index = 0; index < elems.length; index++) {
 
 /*
 
-The DOM is the Document Object Model of a page. It is the code of the structure of a webpage. JavaScript comes with a lot of
-different ways to create and manipulate HTML elements (called nodes).
+The DOM is the Document Object Model of a page. It is the code of the structure of a webpage. 
+
+JavaScript comes with a lot of different ways to create and manipulate HTML elements (called nodes).
 
 cont = document.querySelector('.container');
 
 console.log(cont.childNodes);    //  accept and show all nodes like newLine , comment and elements(tags)
 console.log(cont.children);      //  only accept  element(tags like div, li)
 
+*****  Node Properties  ****** 
 
 attributes — Returns a live collection of all attributes registered to an element
 baseURI — Provides the absolute base URL of an HTML element
