@@ -64,6 +64,8 @@ number = parseInt('$100 dollars'); // NaN
 number = parseInt('+10.25990 kg'); // 10 
 number = parseFloat(' +10.25 kg'); // 10.25
 number = parseFloat('ABC');     //   NaN
+number = parseFloat('1a');     //   1
+number = parseFloat('abc123');     //   NaN
 
 // console.log(number, (typeof number));
 

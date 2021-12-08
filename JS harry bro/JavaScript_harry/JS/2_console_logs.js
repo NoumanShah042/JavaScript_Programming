@@ -34,8 +34,8 @@
 
 console.log('the word is %s', 'foo');   //  output:   the word is foo
 console.log('the word is %s', 'c');        //  output:   the word is c
-console.log('the word is %i', 133);          //  output:   the word is 1
-console.log('the word is %d', 133);          //  output:   the word is 1
+console.log('the word is %i', 133);          //  output:   the word is 133
+console.log('the word is %d', 133);          //  output:   the word is 133
 
 // const css = [
 //     "background-image: url(https://example.com)",
@@ -52,7 +52,12 @@ console.log('the word is %d', 133);          //  output:   the word is 1
 
 // console.log('this is %o a dom element',document.documentElement);
 
+// *******************
 
+// confirm() — Opens up a yes/no dialog and returns true/false depending on user click
+// console.log() — Writes information to the browser console, good for debugging purposes
+// document.write() — Write directly to the HTML document
+// prompt() — Creates a dialogue for user input
 
 // https://www.cloudsavvyit.com/9501/ways-to-format-console-output-in-javascript/
 

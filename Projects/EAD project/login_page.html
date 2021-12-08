@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="login_style.css" />
+    <script src="SecurityManager.js"></script>
+</head>
+
+
+<body>
+
+
+
+    <table>
+
+        <tr>
+            <td colspan="2">
+                <h1 style="font-size: 300%;  " id="sec">Security Manager</h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="background-color: white;">
+                <h1 class="formHeading">Login Admin</h1>
+                <form autocomplete="off" onsubmit="event.preventDefault();">
+                    <div id="form">
+                        <div>
+                            <label>Username</label>
+                            <input type="text" name="username" id="AdminName">
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input type="password" name="password" id="AdminPassword">
+                        </div>
+                    </div>
+
+                    <div class="form-action-buttons">
+                        <button onclick="LoginAdmin()">Login</button>
+                    </div>
+                </form>
+            </td>
+
+            <td style="background-color: white;">
+                <h1 class="formHeading">Login User</h1>
+                <form autocomplete="off" onsubmit="event.preventDefault();">
+                    <div id="form">
+                        <div>
+                            <label>Username</label>
+                            <input type="text" name="username" id="UserName">
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input type="password" name="password" id="UserPassword">
+                        </div>
+                    </div>
+
+                    <div class="form-action-buttons">
+                        <button onclick="LoginUser()">Login</button>
+
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+<script>
+    function LoginAdmin() {
+        let AdminName = document.getElementById("AdminName").value;
+        let AdminPassword = document.getElementById("AdminPassword").value;
+        if (SecurityManager.ValidateAdmin(AdminName, AdminPassword)) {
+            window.open("AdminHome.html", "_self");
+        }
+
+    }
+    function LoginUser() {
+
+        let UserName = document.getElementById("UserName").value;
+        let UserPassword = document.getElementById("UserPassword").value;
+        if (isValidUser(UserName, UserPassword)) {
+
+            localStorage.setItem('UserName', UserName);
+            window.open("UserHome.html", "_self");
+            //location.replace("./User_Hom.html")
+        }
+
+
+    }
+
+    function isValidUser(UserName, UserPassword) {
+        let users = SecurityManager.GetAllUsers();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i]["Login"] == UserName) {
+                if (users[i]["Password"] == UserPassword) {
+                    // alert("valid user")
+                    return true
+                }
+            }
+        }
+        alert("Invalid user")
+        return false;
+    }
+
+
+
+</script>
+
+</html>

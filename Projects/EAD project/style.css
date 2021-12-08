@@ -1,0 +1,135 @@
+/*  */
+body {
+	margin: 0px;
+	color: black;
+	background: repeating-linear-gradient(
+		45deg,
+		rgb(196, 193, 193) 1px,
+		white 5px,
+		white 10px,
+		white 5px
+	);
+}
+
+/*  for forms*/
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+button {
+	width: 30%;
+	background-color: #ddd;
+	color: #000;
+	padding: 14px 20px;
+	margin: 8px 36px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+form div.form-action-buttons {
+	text-align: right;
+	background-color: #000;
+	color: white;
+}
+
+#form {
+	margin: 20px;
+}
+
+form {
+	background-color: white;
+}
+
+.formHeading {
+	background: black;
+	color: white;
+	padding: 20px;
+}
+
+/* for tables*/
+
+table {
+	border-collapse: collapse;
+	margin: 100px;
+}
+
+tr {
+	background-color: white;
+}
+
+th,
+td {
+	padding: 17px;
+}
+
+/*  for navbar*/
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+/*   for columns*/
+* {
+	box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+	float: left;
+	width: 29%;
+	padding: 10px;
+	margin: 0px 70px;
+	margin-left: 116px;
+}
+
+.column2 {
+	float: left;
+	width: 40%;
+	padding: 10px;
+	 
+	 
+}
+.userInfo
+{
+	width: 40%;
+    padding: 10px;
+    margin: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}

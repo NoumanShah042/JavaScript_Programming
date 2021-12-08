@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="./SecurityManager.js"></script>
+    <title>User Management</title>
+
+    <script>
+        function Main() {
+            var countries = SecurityManager.GetCountries();
+            var cmb = document.getElementById('cmbCountries');
+            for (var i = 0; i < countries.length; i++) {
+                var opt = document.createElement("option");
+                opt.setAttribute("value", countries[i].CountryID);
+                opt.innerText = countries[i].Name;
+                cmb.appendChild(opt);
+            }
+
+            document.getElementById('cmbCountries').value = "";
+
+            cmb.onchange = function () {
+                var citycmb = document.getElementById('cmbCities');
+                citycmb.innerHTML = '';
+                var cities = SecurityManager.GetCitiesByCountryId(cmb.value);
+                for (var i = 0; i < cities.length; i++) {
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", cities[i].CityID);
+                    opt.innerText = cities[i].Name;
+                    citycmb.appendChild(opt);
+                }
+            }
+        }
+
+    </script>
+
+
+</head>
+
+<body onload="Main();" style="color: black;">
+
+    <ul>
+        <li><a href="admin-home.html">Home</a></li>
+        <li><a class="active" href="user.html">User Management</a></li>
+        <li><a href="role.html">Role Management</a></li>
+        <li><a href="permission.html">Permission Management</a></li>
+        <li><a href="role-permission.html">Role-Permission Management</a></li>
+        <li><a href="user-role.html">User-Role Management</a></li>
+        <li><a href="login.html">Logout</a></li>
+    </ul>
+
+    <div class="row" id="centerRow" style="padding-top:1%;">
+        <div class="column" style="background-color:#bfb8b8;">
+
+            <div class="row" style="background-color: #032459; font-size:30px; color:white; padding:20px;">
+                <b>User Management</b>
+            </div>
+            <br />
+            <form action="">
+                <div style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">Login</p>
+                    <input class="un " type="text" name="LoginText" id="login" />
+                </div>
+                <br />
+                <div class="row" style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">Password</p>
+                    <input class="un " type="password" name="PasswordText" id="password" />
+                </div>
+                <br />
+                <div class="row" style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">Name</p>
+                    <input class="un " type="text" name="NameText" id="name" />
+                </div>
+                <br />
+                <div class="row" style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">Email</p>
+                    <input class="un " type="email" name="EmailText" id="email" />
+                </div>
+                <br />
+                <div class="row" style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">Country</p>
+                    <select class="un" name="CountrySelect" id="cmbCountries"></select>
+                </div>
+                <br />
+                <div class="row" style="padding-left: 10%; padding-right: 2%">
+                    <p style="font-size:20px;">City</p>
+                    <select class="un" name="CitySelect" id="cmbCities"></select>
+                </div>
+                <br /><br />
+                <div class="row"
+                    style="background-color: #032459; font-size: 30px; color: white; padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 20px;margin-top:20px; ">
+                    <button id="addButton" type="button" onclick="saveRecord()"
+                        style="float: right; padding-top: 10px; padding-bottom: 10px; padding-right: 20%; padding-left: 20%; background-color: #E6E6E6; border: none; border-radius: 5px; ">
+                        <b>Save</b>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <div class="column" style=" padding-left:8%;padding-top:33%;">
+
+            <table id="tabledata" style="background-color:white;">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    var flagID = -1;
+    var retrievedObject = SecurityManager.GetAllUsers();
+    table = document.getElementById('tabledata');
+    for (var i = 0; i < retrievedObject.length; i++) {
+        row = document.createElement('tr');
+        var x = retrievedObject[i]["ID"];
+        row.innerHTML = ` <td >${retrievedObject[i]["ID"]}</td>
+            <td>${retrievedObject[i]["Name"]}</td>
+            <td>${retrievedObject[i]["Email"]}</td>
+            <td onclick="editRecord(${x})">Edit</td>
+            <td onclick="deleteRecord(${x})">Delete</td>`;
+        table.appendChild(row);
+    }
+
+    function deleteRecord(id) {
+        var check = confirm("Press OK button to delete!");
+        if (check == true) {
+            SecurityManager.DeleteUser(id);
+            window.location.reload();
+            alert("Deleted Successfully");
+        }
+        else {
+            alert("Not Deleted");
+        }
+    }
+
+    function editRecord(id) {
+        flagID = id;
+        var obj = SecurityManager.GetUserById(id);
+        document.getElementById('login').value = obj.Login;
+        document.getElementById('password').value = obj.Password;
+        document.getElementById('name').value = obj.Name;
+        document.getElementById('email').value = obj.Email;
+        document.getElementById('cmbCountries').value = obj.Country;
+        document.getElementById('cmbCities').value = obj.City;
+    }
+
+    function saveRecord() {
+        let login = document.getElementById('login').value;
+        let password = document.getElementById('password').value;
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let country = document.getElementById('cmbCountries').value;
+        let city = document.getElementById('cmbCities').value;
+
+        if (login == "" || password == "" || name == "" || email == "" || country == "" || city == "") {
+            alert("Fill all the fields!");
+            return;
+        }
+
+        if (flagID == -1) {
+            var objects = SecurityManager.GetAllUsers();
+            for (var i = 0; i < objects.length; i++) {
+                if (objects[i]["Login"] == login) {
+                    alert("Login already exist!");
+                    return;
+                }
+                if (objects[i]["Email"] == email) {
+                    alert("Email already exist!");
+                    return;
+                }
+            }
+        }
+
+        if (flagID == -1) {
+            obj = { Name: name, Email: email, Country: country, City: city, Login: login, Password: password };
+            alert("Created Successfully");
+        }
+        else {
+            obj = { ID: flagID, Name: name, Email: email, Country: country, City: city, Login: login, Password: password };
+            alert("Edited Successfully");
+        }
+
+        SecurityManager.SaveUser(obj);
+        window.location.reload();
+    }
+
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #D0D0D0;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 0;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #032459;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #214173;
+    }
+
+    .active {
+        background-color: #a67a00;
+    }
+
+    .un {
+        font-size: 15px;
+        padding: 10px;
+        padding-left: 0;
+        border-radius: 5px;
+        width: 70%;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .un:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    }
+
+    #centerRow {
+        margin: auto;
+        width: 50%;
+    }
+</style>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="SecurityManager.js"></script>
+</head>
+<script>
+    function Main() {
+        displayTable()
+        var countries = SecurityManager.GetCountries();
+        var cmb = document.getElementById('cmbCountries')
+        for (var i = 0; i < countries.length; i++) {
+            var opt = document.createElement("option");
+
+            opt.setAttribute("value", countries[i].CountryID);
+            opt.innerText = countries[i].Name;
+
+            cmb.appendChild(opt);
+        }
+        document.getElementById('cmbCountries').value = "";
+        cmb.onchange = function () {
+
+            var citycmb = document.getElementById('cmbCities');
+
+            //Remove all child elements (e.g. options)
+            citycmb.innerHTML = '';
+
+            var cities = SecurityManager.GetCitiesByCountryId(cmb.value);
+
+            for (var i = 0; i < cities.length; i++) {
+                var opt = document.createElement("option");
+                opt.setAttribute("value", cities[i].CityID);
+                opt.innerText = cities[i].Name;
+
+                citycmb.appendChild(opt);
+            }
+
+
+        }//end of onchange
+
+    }//end ofMain
+
+</script>
+
+
+<body onload="Main(); ">
+    <ul>
+        <li><a href="AdminHome.html">Home</a></li>
+        <li><a class="active" href="user_management.html">User Management</a></li>
+        <li><a href="role_management.html">Role Management</a></li>
+        <li><a href="permission_management.html">Permission Management</a></li>
+        <li><a href="RolePermission_management.html">Role-Permission Management</a></li>
+        <li><a href="UserRole_management.html">User-Role Management</a></li>
+        <li><a href="login_page.html">Logout</a></li>
+
+    </ul>
+
+    <div class="row">
+        <div class="column1">
+            <div style="background-color: white;">
+                <h2 class="formHeading"> User Management</h2>
+                <form autocomplete="off" onsubmit="event.preventDefault();">
+                    <div id="form">
+
+                        <!-- UserLogin   UserPassword  UserName  UserEmail  cmbCountries   cmbCities  -->
+                        <label>Login:</label>
+                        <input type="text" name="username" id="UserLogin" required>
+
+                        <label>Password:</label>
+                        <input type="password" name="password" id="UserPassword" required>
+
+                        <label>Name:</label>
+                        <input type="text" name="username" id="UserName" required>
+
+                        <label>Email:</label>
+                        <input type="email" name="email" id="UserEmail" required>
+
+                        <label>Country:</label>
+                        <select name="" id="cmbCountries" required>
+                        </select>
+
+                        <label>City:</label>
+                        <select name="" id="cmbCities" required>
+                        </select>
+
+                    </div>
+
+                    <div class="form-action-buttons">
+                        <!-- <input type="submit" onclick="saveRecord()" value="Submit"> -->
+                        <button type="submit" onclick="saveRecord()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="column2">
+            <table border="1" cellpadding="10" cellspacing="0" id="myTable">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                </tr>
+
+                <!-- <tr>
+                    <td>1</td>
+                    <td>Nouman</td>
+                    <td>bcsf18m027@gmail.com</td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                </tr> -->
+
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+
+    var selectedRow = null;
+    var UpdatedRecordID = -1;
+
+    function successFunction(msg) {
+        console.log(msg)
+    }
+    function errorFunction(msg) {
+        console.log(msg)
+    }
+    function setCities(id) {
+        var citycmb = document.getElementById('cmbCities');
+
+        //Remove all child elements (e.g. options)
+        citycmb.innerHTML = '';
+        let countryId = id
+        var cities = SecurityManager.GetCitiesByCountryId(countryId);
+
+        for (var i = 0; i < cities.length; i++) {
+            var opt = document.createElement("option");
+            opt.setAttribute("value", cities[i].CityID);
+            opt.innerText = cities[i].Name;
+
+            citycmb.appendChild(opt);
+        }
+    }
+
+    function onEdit(event) {
+        console.log(event.target)
+        selectedRow = event.target.parentElement.parentElement;
+        UpdatedRecordID = parseInt(selectedRow.children[0].innerText)
+        let user = SecurityManager.GetUserById(UpdatedRecordID);
+        console.log(user)
+
+        document.getElementById("UserLogin").value = user.Login;
+        document.getElementById("UserPassword").value = user.Password;
+        document.getElementById("UserName").value = user.Name;
+        document.getElementById("UserEmail").value = user.Email;
+        document.getElementById("cmbCountries").selectedIndex = user.Country - 1;
+        setCities(parseInt(user.Country));
+
+    }
+    function onDelete(event) {
+        // 
+        if (confirm('Are you sure to delete this record ?')) {
+            row = event.target.parentElement.parentElement; //  get the tr element
+            let userId = parseInt(row.children[0].innerText);
+
+            SecurityManager.DeleteUser(userId, successFunction, errorFunction)
+            selectedRow = null;
+            UpdatedRecordID = -1;
+            displayTable();
+            resetForm();
+        }
+    }
+
+    function isUserAlreadyExist(login, email) {
+
+        var users = SecurityManager.GetAllUsers();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i]["Login"] == login) {
+                alert("Login already exist!");
+                return true;
+            }
+            if (users[i]["Email"] == email) {
+                alert("Email already exist!");
+                return true;
+            }
+        }
+        return false;
+
+    }
+    function saveRecord() {
+        if (isValid()) {
+            //  access values from form
+            let UserLogin = document.getElementById("UserLogin").value;
+            let UserPassword = document.getElementById("UserPassword").value;
+            let UserName = document.getElementById("UserName").value;
+            let UserEmail = document.getElementById("UserEmail").value;
+            let cmbCountries = document.getElementById("cmbCountries").value;
+            let cmbCities = document.getElementById("cmbCities").value;
+
+
+            if (selectedRow == null) {
+                if (isUserAlreadyExist(UserLogin, UserEmail)) {
+                    return;
+                }
+                //  insert record
+                let obj = { Name: UserName, Email: UserEmail, Age: 100, Country: cmbCountries, City: cmbCities, Login: UserLogin, Password: UserPassword }
+                SecurityManager.SaveUser(obj, successFunction, errorFunction);
+            }
+            else {
+                //  update record
+                let obj = { Name: UserName, Email: UserEmail, Age: 100, Country: cmbCountries, City: cmbCities, Login: UserLogin, Password: UserPassword }
+                obj.ID = UpdatedRecordID;
+                SecurityManager.SaveUser(obj, successFunction, errorFunction)
+            }
+            selectedRow = null;
+            UpdatedRecordID = -1;
+            displayTable();
+            resetForm();
+        }
+    }
+    function isValid() {
+        isValidData = true;
+        let UserLogin = document.getElementById("UserLogin").value;
+        let UserPassword = document.getElementById("UserPassword").value;
+        let UserName = document.getElementById("UserName").value;
+        let UserEmail = document.getElementById("UserEmail").value;
+        let cmbCountries = document.getElementById("cmbCountries").value;
+        let cmbCities = document.getElementById("cmbCities").value;
+        // console.log( UserLogin   ,UserPassword , UserName,  UserEmail , cmbCountries ,  cmbCities  )
+
+        if (UserLogin == "") {
+            alert("Enter Login")
+            return false
+        }
+        if (UserPassword == "") {
+            alert("Enter Password")
+            return false
+        }
+        if (UserName == "") {
+            alert("Enter Name")
+            return false
+        }
+        if (!ValidateEmail(UserEmail)) {
+
+            return false
+        }
+        if (cmbCountries == "") {
+
+            alert("Select Country")
+            return false
+        }
+        if (cmbCities == "") {
+
+            alert("Select City")
+            return false
+        }
+
+        return isValidData;
+    }
+
+    function ValidateEmail(mail) {
+        if (mail == "") {
+            alert("Enter Email")
+            return false;
+        }
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (mail.match(mailformat)) {
+            return (true)
+        }
+        alert("You have entered an invalid email address!")
+        return (false)
+    }
+
+    function displayTable() {
+        let myTable = document.getElementById("myTable");
+        let html = `<tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th> Edit</th>
+                    <th>Delete</th>
+                </tr>`;
+        let allUsers = SecurityManager.GetAllUsers();
+
+        allUsers.forEach(function (element, index) {
+            // console.log(element)//  return single item of array
+            html += `  <tr>
+                            <td>${element.ID}</td>
+                            <td>${element.Name}</td>
+                            <td>${element.Email}</td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                        </tr>`
+
+        });
+        myTable.innerHTML = html;
+    }
+
+    function resetForm() {
+        document.getElementById("UserLogin").value = "";
+        document.getElementById("UserPassword").value = "";
+        document.getElementById("UserName").value = "";
+        document.getElementById("UserEmail").value = "";;
+        document.getElementById("cmbCountries").value = "";
+        document.getElementById("cmbCities").value = "";
+
+
+    }
+</script>
+
+</html>

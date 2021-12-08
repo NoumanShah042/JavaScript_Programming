@@ -1,0 +1,49 @@
+index.html          
+<!-- <script src="JS/2_console_logs.js">  </script> -->
+    <!-- <script src="JS/consoleLogs.js">  </script>   -->
+    <!-- <script src="JS/Variables.js"></script> -->
+    <!-- <script src="JS/5_type_Conversion.js"></script> -->
+    <!-- <script src="JS/6_strings.js"> </script> -->
+    <!-- <script src="JS/6_strings1.js"> </script> -->
+    <!-- <script src="JS/7_Arrays.js"> </script> -->
+    <!-- <script src="JS/9_loops.js"> </script> -->
+    <!-- <script src="JS/9_iteration_for_loop.js"> </script> -->
+    <!-- <script src="JS/10_function.js"> </script>-->
+    <script src="JS/11_JS_window_object.js"> </script>
+    <!-- <script src="JS/12_dom.js"> </script>   -->
+    <!-- <script src="JS/45_Regular Expressions.js"> </script>   -->
+
+
+dom.html                 --------
+
+<!-- <script src="js/tut12.js"></script> -->
+<!-- <script src="js/tut14.js"></script> -->
+<script src="JS/12_dom.js"></script>
+
+
+
+index2.html            -------   bootstrap version of dom.html
+
+<!-- <script src="js/14_element_selector.js"></script> -->
+<!-- <script src="js/15_traversing_the_dom.js"></script> -->
+<!-- <script src="js/17_eventsListener_i.js"></script> -->
+<!-- <script src="js/18_eventsListener_ii.js"></script> -->
+<!-- <script src="js/23_math_object.js"></script> -->
+<!-- <script src="js/21_create_editable_div.js"></script> -->
+<!-- <script src="JS/27_Object_Constructors.js"> </script>  -->
+<!-- <script src="JS/28_Object_Prototype.js"> </script>  -->
+<!-- <script src="JS/31_ES6_Classes_and_Inheritance.js"> </script>  -->
+<!-- <script src="JS/37_Callback functions.js"> </script>  -->
+<!-- <script src="JS/41_fetch_api.js"> </script>  -->
+<script src="JS/41_fetch_ii.js"> </script> 
+<!-- <script src="JS/42_Async_Await.js"> </script>  -->
+<!-- <script src="JS/42_b_Async_Await.js"> </script>  -->
+<!-- <script src="JS/44_Exercise 5.js"> </script>  -->
+<!-- <script src="JS/46_Regular Expressions_2.js"> </script>  -->
+<!-- <script src="JS/45_Regular Expressions_1.js"> </script>  -->
+<!-- <script src="JS/48_test_regex.js"> </script> -->
+<!-- <script src="JS/52_for_loops_types.js"> </script> -->
+<!-- <script src="JS/53_Maps_ii.js"> </script> -->
+<!-- <script src="JS/54_Sets.js"> </script> -->
+<!-- <script src="JS/55_Symbol_ii.js"> </script> -->
+<!-- <script src="JS/56_Destructuring.js"> </script> -->

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permission Management</title>
+    <script src="SecurityManager.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<script>
+    function Main() {
+        displayTable()
+
+    }//end ofMain
+
+</script>
+
+
+<body onload="Main(); ">
+    <ul>
+        <li><a href="AdminHome.html">Home</a></li>
+        <li><a class="active" href="user_management.html">User Management</a></li>
+        <li><a href="role_management.html">Role Management</a></li>
+        <li><a href="permission_management.html">Permission Management</a></li>
+        <li><a href="RolePermission_management.html">Role-Permission Management</a></li>
+        <li><a href="UserRole_management.html">User-Role Management</a></li>
+        <li><a href="login_page.html">Logout</a></li>
+
+    </ul>
+
+    <div class="row">
+        <div class="column1">
+            <div style="background-color: white;">
+                <h2 class="formHeading"> Permission Management</h2>
+                <form autocomplete="off" onsubmit="event.preventDefault();">
+                    <div id="form">
+
+                        <!--  PermissionName  PermissionDescription     -->
+                        <label>Permission Name:</label>
+                        <input type="text" name="PermissionName" id="PermissionName" required>
+
+                        <label>Description:</label>
+                        <input type="text" name="PermissionDescription" id="PermissionDescription" required>
+
+
+                    </div>
+
+                    <div class="form-action-buttons">
+                        <!-- <input type="submit" onclick="savePermission()" value="Submit"> -->
+                        <button type="submit" onclick="savePermission()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="column2">
+            <table border="1" cellpadding="10" cellspacing="0" id="myTable">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                </tr>
+
+                <!-- <tr>
+                    <td>1</td>
+                    <td>Nouman</td>
+                    <td>bcsf18m027@gmail.com</td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                </tr> -->
+
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    //  ID   , Name , Description
+    var selectedRow = null;
+    var UpdatedPermissionId = -1;
+
+    function successFunction(msg) {
+        console.log(msg)
+    }
+    function errorFunction(msg) {
+        console.log(msg)
+    }
+
+    function onEdit(event) {
+        console.log(event.target)
+        selectedRow = event.target.parentElement.parentElement;
+        UpdatedPermissionId = parseInt(selectedRow.children[0].innerText)
+        let permission = SecurityManager.GetPermissionById(UpdatedPermissionId);
+
+        document.getElementById("PermissionName").value = permission.Name;
+        document.getElementById("PermissionDescription").value = permission.Description;
+
+
+    }
+    function onDelete(event) {
+        if (confirm('Are you sure to delete this Role ?')) {
+            row = event.target.parentElement.parentElement; //  get the tr element
+            let permissionId = parseInt(row.children[0].innerText);
+            SecurityManager.DeletePermission(permissionId, successFunction, errorFunction)
+            selectedRow = null;
+            UpdatedPermissionId = -1;
+            displayTable();
+            resetForm();
+        }
+    }
+
+    function isPermissionAlreadyExist(PermissionName) {
+        var Permissions = SecurityManager.GetAllPermissions();
+        for (var i = 0; i < Permissions.length; i++) {
+            if (Permissions[i]["Name"] == PermissionName) {
+                alert("Permission already exist!");
+                return true;
+            }
+        }
+        return false;
+    }
+    function savePermission() {
+        if (isValid()) {
+            //  access values from form
+            let PermissionName = document.getElementById("PermissionName").value;
+            let PermissionDescription = document.getElementById("PermissionDescription").value;
+            if (selectedRow == null) {
+                if (isPermissionAlreadyExist(PermissionName)) {
+                    return;
+                }
+                //  insert record
+                let obj = { Name: PermissionName, Description: PermissionDescription }
+                SecurityManager.SavePermission(obj, successFunction, errorFunction);
+            }
+            else {
+                //  update record
+                let obj = { Name: PermissionName, Description: PermissionDescription }
+                obj.ID = UpdatedPermissionId;
+                SecurityManager.SavePermission(obj, successFunction, errorFunction)
+            }
+            window.location.reload();
+            // displayTable();
+            // resetForm();
+        }
+    }
+    function isValid() {
+        isValidData = true;
+        let PermissionName = document.getElementById("PermissionName").value;
+        let PermissionDescription = document.getElementById("PermissionDescription").value;
+
+        if (PermissionName == "") {
+            alert("Enter Permission Name")
+            return false
+        }
+        if (PermissionDescription == "") {
+            alert("Enter Description")
+            return false
+        }
+        return isValidData;
+    }
+
+
+
+    function displayTable() {
+        let myTable = document.getElementById("myTable");
+        let html = `<tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th> Edit</th>
+                    <th>Delete</th>
+                </tr>`;
+        let allUsers = SecurityManager.GetAllPermissions();
+
+        allUsers.forEach(function (element, index) {
+            html += `  <tr>
+                            <td>${element.ID}</td>
+                            <td>${element.Name}</td>
+                            <td>${element.Description}</td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                        </tr>`
+
+        });
+        myTable.innerHTML = html;
+    }
+
+    function resetForm() {
+        document.getElementById("PermissionName").value = "";
+        document.getElementById("PermissionDescription").value = "";
+    }
+</script>
+
+</html>

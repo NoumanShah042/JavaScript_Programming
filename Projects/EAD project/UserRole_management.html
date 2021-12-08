@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Role Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="SecurityManager.js"></script>
+</head>
+<script>
+    function Main() {
+        displayTable()
+        var roles = SecurityManager.GetAllRoles();
+        var cmb = document.getElementById('cmbRole')
+        for (var i = 0; i < roles.length; i++) {
+            var opt = document.createElement("option");
+            opt.setAttribute("value", roles[i].ID);
+            opt.innerText = roles[i].Name;
+
+            cmb.appendChild(opt);
+        }
+
+        var users = SecurityManager.GetAllUsers();
+        var cmb = document.getElementById('cmbUser')
+        for (var i = 0; i < users.length; i++) {
+            var opt = document.createElement("option");
+            opt.setAttribute("value", users[i].ID);
+            opt.innerText = users[i].Login;
+
+            cmb.appendChild(opt);
+        }
+
+        document.getElementById('cmbUser').value = "";
+        document.getElementById('cmbRole').value = "";
+
+    }//end ofMain
+
+</script>
+
+
+<body onload="Main(); ">
+    <ul>
+        <li><a href="AdminHome.html">Home</a></li>
+        <li><a href="user_management.html">User Management</a></li>
+        <li><a href="role_management.html">Role Management</a></li>
+        <li><a href="permission_management.html">Permission Management</a></li>
+        <li><a href="RolePermission_management.html">Role-Permission Management</a></li>
+        <li><a class="active" href="UserRole_management.html">User-Role Management</a></li>
+        <li><a href="login_page.html">Logout</a></li>
+
+    </ul>
+
+    <div class="row">
+        <div class="column1">
+            <div style="background-color: white;">
+                <h2 class="formHeading"> User Role Management</h2>
+                <form autocomplete="off" onsubmit="event.preventDefault();">
+                    <div id="form">
+
+                        <!-- // cmbRole cmbUser-->
+                        <label>Role:</label>
+                        <select name="" id="cmbRole" required>
+                        </select>
+
+                        <label>User:</label>
+                        <select name="" id="cmbUser" required>
+                        </select>
+
+                    </div>
+
+                    <div class="form-action-buttons">
+                        <!-- <input type="submit" onclick="savePermission()" value="Submit"> -->
+                        <button type="submit" onclick="savePermission()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="column2">
+            <table border="1" cellpadding="10" cellspacing="0" id="myTable">
+
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Role</th>
+                    <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                    <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                </tr>
+
+
+
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    //  ID   , Name , Description
+    var selectedRow = null;
+    var userRoleID = -1;
+
+    function successFunction(msg) {
+        console.log(msg)
+    }
+    function errorFunction(msg) {
+        console.log(msg)
+    }
+
+    function onEdit(event) {
+        // // cmbRole cmbUser
+        //  Role    User
+        selectedRow = event.target.parentElement.parentElement;
+        userRoleID = parseInt(selectedRow.children[0].innerText)
+        let userRoleobj = SecurityManager.GetUserRoleById(userRoleID);
+
+        // console.log(rolePermission)
+        // console.log(findRoleId(rolePermission.Role))
+        // console.log(findPermissionId(rolePermission.Permissions))
+
+        document.getElementById('cmbRole').value = findRoleIdByName(userRoleobj.Role);
+        document.getElementById('cmbUser').value = findUserIdByName(userRoleobj.User);
+    }
+
+
+    function findRoleIdByName(str) {
+        var roles = SecurityManager.GetAllRoles();
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i].Name == str) {
+                return roles[i].ID.toString();
+            }
+        }
+
+    }
+    function findUserIdByName(str) {
+        var users = SecurityManager.GetAllUsers();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].Login == str) {
+                return users[i].ID.toString();
+            }
+        }
+    }
+
+    function onDelete(event) {
+        if (confirm('Are you sure to delete this Role ?')) {
+            row = event.target.parentElement.parentElement; //  get the tr element
+            let userRoleId = parseInt(row.children[0].innerText);
+            SecurityManager.DeleteUserRole(userRoleId, successFunction, errorFunction)
+            selectedRow = null;
+            userRoleID = -1;
+            displayTable();
+            resetForm();
+        }
+    }
+
+    function isUserRoleAlreadyExist(UserName, RoleName) {
+        var userRoles = SecurityManager.GetAllUserRoles();
+        for (var i = 0; i < userRoles.length; i++) {
+            if (userRoles[i]["User"] == UserName && userRoles[i]["Role"] == RoleName) {
+                alert("User Role already exist!");
+                resetForm();
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    function getTextOfRoleByID(id) {
+        var roles = SecurityManager.GetAllRoles();
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i].ID == id) {
+                return roles[i].Name;
+            }
+        }
+
+    }
+    function getNameOfUserByID(id) {
+        var users = SecurityManager.GetAllUsers();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].ID == id) {
+                return users[i].Login;
+            }
+        }
+    }
+    function savePermission() {
+        if (isValid()) {
+            //  access values from form
+
+            let RoleID = parseInt(document.getElementById("cmbRole").value)
+            let UserID = parseInt(document.getElementById("cmbUser").value)
+
+            let RoleName = getTextOfRoleByID(RoleID);
+            let UserName = getNameOfUserByID(UserID);
+            console.log(RoleName, "   ", UserName)
+
+            if (isUserRoleAlreadyExist(UserName, RoleName)) {
+                return;
+            }
+
+            if (selectedRow == null) {
+
+                //  insert record
+                let obj = { Role: RoleName, User: UserName }
+                SecurityManager.SaveUserRole(obj, successFunction, errorFunction);
+            }
+            else {
+                //  update record
+                let obj = { Role: RoleName, User: UserName }
+                obj.ID = userRoleID;
+                SecurityManager.SaveUserRole(obj, successFunction, errorFunction)
+            }
+            window.location.reload();
+            // displayTable();
+            // resetForm();
+        }
+    }
+    function isValid() {
+        // cmbRole cmbUser
+        isValidData = true;
+        let cmbRole = document.getElementById("cmbRole").value;
+        let cmbUser = document.getElementById("cmbUser").value;
+
+        if (cmbRole == "") {
+            alert("Select Role")
+            return false
+        }
+        if (cmbUser == "") {
+            alert("Select Permission")
+            return false
+        }
+        return isValidData;
+    }
+
+
+
+    function displayTable() {
+        let myTable = document.getElementById("myTable");
+        let html = `<tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th> Edit</th>
+                    <th>Delete</th>
+                </tr>`;
+        let userRoles = SecurityManager.GetAllUserRoles();
+
+        userRoles.forEach(function (element, index) {
+            //   ID  , Role   , Permission
+            html += `  <tr>
+                            <td>${element.ID}</td>
+                            <td>${element.User}</td>
+                            <td>${element.Role}</td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onEdit(event) ">Edit</a></td>
+                            <td><a style="cursor: pointer; color:blue" onClick="onDelete(event)">Delete</a> </td>
+                        </tr>`
+
+        });
+        myTable.innerHTML = html;
+    }
+
+    function resetForm() {
+        document.getElementById('cmbUser').value = "";
+        document.getElementById('cmbRole').value = "";
+    }
+</script>
+
+</html>

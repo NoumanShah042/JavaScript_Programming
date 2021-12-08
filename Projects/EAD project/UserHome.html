@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="SecurityManager.js"></script>
+    <script>
+        var listofRoles = [];
+        var listofPermissions = [];
+        var loginUser;
+
+        function Main() {
+            loginUser = localStorage.getItem('UserName')
+            document.getElementById("welcome").innerText = "Welcome " + loginUser;
+            getListOfRolesByUserName()
+            getListOfAllPermissionsByRoleName()
+            updateRoleAndPermissions()
+
+            // console.log(getListOfPermissionsForOneRole("role2"))
+
+            console.log(loginUser)
+            console.log(listofRoles)
+            console.log(listofPermissions)
+            // console.log(getListOfRolesByUserName(loginUser))
+        }
+
+        function getListOfRolesByUserName() {
+
+            let UserRoles = SecurityManager.GetAllUserRoles();
+            // console.log(UserRoles)
+            for (let i = 0; i < UserRoles.length; i++) {
+                if (UserRoles[i].User == loginUser) {
+                    listofRoles.push(UserRoles[i].Role)
+                }
+            }
+        }
+
+        function getListOfAllPermissionsByRoleName() {
+
+
+            for (let i = 0; i < listofRoles.length; i++) {
+                // console.log(listofRoles[i])
+                //  we need to get all permission of all the roles in the listofRoles
+                let l = getListOfPermissionsForOneRole(listofRoles[i]);
+                console.log("l  ", l)
+                listofPermissions = listofPermissions.concat(l);
+            }
+
+        }
+        function getListOfPermissionsForOneRole(role) {
+            let RolePermissions = SecurityManager.GetAllRolePermissions();
+            let list = []
+            for (let i = 0; i < RolePermissions.length; i++) {
+                if (RolePermissions[i].Role == role) {
+                    list.push(RolePermissions[i].Permissions)
+                }
+            }
+            return list;
+        }
+
+        function updateRoleAndPermissions() {
+            roles = document.getElementById("Roles")
+            permissions = document.getElementById("Permissions")
+            /*var listofRoles = [];
+                    var listofPermissions = [];
+                    var loginUser;
+            */
+            let str = ""
+            let k = 1;
+            for (let i = listofRoles.length - 1; i >= 0; i--) {
+                str += `<b><br>Role${k}:  ${listofRoles[i]} </b>`;
+                k++;
+            }
+            roles.innerHTML = str;
+
+            k = 1;
+            str = ""
+            for (let i = listofPermissions.length - 1; i >= 0; i--) {
+                str += "" + listofPermissions[i] + "<br>";
+            }
+            permissions.innerHTML = str;
+
+        }
+        function logout() {
+            localStorage.removeItem('UserName');
+        }
+    </script>
+</head>
+
+<body onload="Main();">
+    <ul>
+        <li><a class="active" href="UserHome.html">Home</a></li>
+        <li><a href="login_page.html" onclick="logout()">Logout</a></li>
+    </ul>
+
+    <div class="userInfo">
+        <div style="background-color: white;">
+            <h2 class="formHeading" id="welcome"> User Management</h2>
+            <form autocomplete="off">
+                <div style="margin: 10px;">
+
+                    <div id="Roles" style="font-size: 22px;    color: grey;">
+
+                    </div>
+                    <br>
+                    <div style="background-color: black; color:white;padding: 10px;">Permissions</div>
+                    <div id="Permissions" style="padding: 10px;font-size: 20px;">
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+
+
+</script>
+
+</html>
